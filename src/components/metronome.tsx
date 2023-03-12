@@ -1,23 +1,21 @@
 import React from 'react';
-import './App.css';
-import Metronome from './components/metronome';
 import styled from 'styled-components';
 
 const S = {
   Container: styled.div`
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-content: center;
   `,
-};
+}
 
-function App() {
+function Metronome() {
   return (
     <S.Container>
-      <Metronome/>
+      <h3>Metronome</h3>
+      <p>This is metronome section.</p>
     </S.Container>
   );
 }
 
-export default App;
+export default Metronome;

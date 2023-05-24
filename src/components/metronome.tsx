@@ -6,6 +6,9 @@ const S = {
     display: flex;
     flex-direction: column;
     align-content: center;
+    border: 1px #61dafb dotted;
+    
+    width: 200px;
   `,
 }
 

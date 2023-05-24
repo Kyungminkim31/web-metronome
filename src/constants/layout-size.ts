@@ -1,0 +1,1 @@
+export const MAIN_CONTAINER_MAX_WIDTH = 1280;

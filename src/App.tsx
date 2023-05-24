@@ -2,21 +2,28 @@ import React from 'react';
 import './App.css';
 import Metronome from './components/metronome';
 import styled from 'styled-components';
+import {MAIN_CONTAINER_MAX_WIDTH} from './constants/layout-size';
 
 const S = {
-  Container: styled.div`
-    height: 100%;
+  PageContainer: styled.div`
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
+  `,
+  ContentContainer: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `,
 };
 
 function App() {
   return (
-    <S.Container>
-      <Metronome/>
-    </S.Container>
+    <S.PageContainer>
+      <S.ContentContainer>
+        <Metronome/>
+      </S.ContentContainer>
+    </S.PageContainer>
   );
 }
 

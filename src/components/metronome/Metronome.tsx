@@ -1,4 +1,4 @@
-import React from 'react'; import styled from 'styled-components';
+import React, {SyntheticEvent} from 'react'; import styled from 'styled-components';
 import {PRIMARY, WHITE} from '../../constants/color';
 
 const S = {
@@ -40,18 +40,28 @@ const S = {
 
 }
 
-function Container() {
+function Metronome() {
+  const handlePlayButtonClick = (se: SyntheticEvent) => {
+    se.preventDefault();
+    console.log("start");
+  };
+
+  const handleStopButtonClick = (se:SyntheticEvent) => {
+    se.preventDefault();
+    console.log("stop");
+  }
+
   return (
     <S.Container>
       <h3>Metronome</h3>
       <p>This is metronome section.</p>
       <S.ButtonBar>
-        <S.Button>Play</S.Button>
-        <S.Button>Stop</S.Button>
+        <S.Button onClick={handlePlayButtonClick}>Play</S.Button>
+        <S.Button onClick={handleStopButtonClick}>Stop</S.Button>
       </S.ButtonBar>
       <S.ProgressBar>Test</S.ProgressBar>
     </S.Container>
   );
 }
 
-export default Container;
+export default Metronome;

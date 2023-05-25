@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Container from './components/metronome/Container';
+import Metronome from './components/metronome/Metronome';
 import styled from 'styled-components';
-import {CONTENT_CONTAINER_MAX_WIDTH, MAIN_CONTAINER_MAX_WIDTH} from './constants/layout-size';
+import {CONTENT_CONTAINER_MAX_WIDTH} from './constants/layout-size';
 
 const S = {
   PageContainer: styled.div`
@@ -11,10 +11,13 @@ const S = {
     align-items: center;
   `,
   ContentContainer: styled.div`
-    width: ${CONTENT_CONTAINER_MAX_WIDTH}px;
+    width: 100%;
+    max-width: ${CONTENT_CONTAINER_MAX_WIDTH}px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    background-color: #282c34;
   `,
 };
 
@@ -22,7 +25,7 @@ function App() {
   return (
     <S.PageContainer>
       <S.ContentContainer>
-        <Container/>
+        <Metronome/>
       </S.ContentContainer>
     </S.PageContainer>
   );

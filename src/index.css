@@ -14,5 +14,8 @@ code {
 
 html, body {
   width: 100vw;
-  height: 100vw;
+  height: 100vh;
+
+  color: #ffffff;
+  background-color: #000000;
 }

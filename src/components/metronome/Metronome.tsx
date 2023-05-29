@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from 'react'; import styled from 'styled-components';
 import {PRIMARY, WHITE} from '../../constants/color';
-import {NOTE_VALUE} from '../../types/note-value';
+import {NOTE_VALUE} from '../types/note-value';
+import clickUrl from '../../assets/sounds/metronome-click.mp3';
 
 const S = {
   Container: styled.div`
@@ -37,8 +38,9 @@ const S = {
   ProgressBar: styled.div`
     width: 100%;
     margin-top: 0.75rem;
+    font-weight: bold;
+    font-size: 2rem;
   `,
-
 }
 
 function Metronome() {
@@ -46,15 +48,17 @@ function Metronome() {
   const noteValue = NOTE_VALUE.QUARTER_NOTE;
   const [maxBeat,] = useState(initialBeat);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
-  const [currentBeat, setCurrentBeat] = useState(1);
+  const [currentBeat, setCurrentBeat] = useState(0);
+
+  const [audio] = useState(new Audio(clickUrl));
 
   const handlePlayButtonClick = (se: SyntheticEvent) => {
     se.preventDefault();
-    console.log("start");
+
     if (!intervalId) clearInterval(intervalId);
 
     const id = setInterval(() => {
-      console.log(currentBeat)
+      audio.play();
       setCurrentBeat(currentBeat => ((currentBeat % maxBeat) + 1));
     }, 1000);
     setIntervalId(id);
@@ -62,9 +66,8 @@ function Metronome() {
 
   const handleStopButtonClick = (se:SyntheticEvent) => {
     se.preventDefault();
-    console.log("stop");
     clearInterval(intervalId);
-    setCurrentBeat(1);
+    setCurrentBeat(0);
   }
 
   return (
@@ -75,7 +78,7 @@ function Metronome() {
         <S.Button onClick={handlePlayButtonClick}>Play</S.Button>
         <S.Button onClick={handleStopButtonClick}>Stop</S.Button>
       </S.ButtonBar>
-      <S.ProgressBar>{currentBeat}</S.ProgressBar>
+      <S.ProgressBar>{currentBeat === 0 ? '-' : currentBeat}</S.ProgressBar>
     </S.Container>
   );
 }

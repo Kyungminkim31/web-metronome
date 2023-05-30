@@ -35,6 +35,7 @@ const S = {
     flex-direction: row;
     gap: 0.25rem;
   `,
+
   ProgressBar: styled.div`
     width: 100%;
     margin-top: 0.75rem;
@@ -45,10 +46,15 @@ const S = {
 
 function Metronome() {
   const initialBeat = 4;
+  const initialTempo = 100;
+
   const noteValue = NOTE_VALUE.QUARTER_NOTE;
   const [maxBeat,] = useState(initialBeat);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [currentBeat, setCurrentBeat] = useState(0);
+
+  // BPM stands for Beat Per Minute
+  const [tempo,] = useState(initialTempo);
 
   const [audio] = useState(new Audio(clickUrl));
 
@@ -58,9 +64,10 @@ function Metronome() {
     if (!intervalId) clearInterval(intervalId);
 
     const id = setInterval(() => {
-      audio.play();
+      audio.currentTime = 0;
       setCurrentBeat(currentBeat => ((currentBeat % maxBeat) + 1));
-    }, 1000);
+      audio.play();
+    }, (60 / tempo) * 1000);
     setIntervalId(id);
   };
 
@@ -73,6 +80,7 @@ function Metronome() {
   return (
     <S.Container>
       <h3>Metronome</h3>
+      <p>Tempo: {initialTempo}</p>
       <p>Time Signature:  {maxBeat}/{noteValue}</p>
       <S.ButtonBar>
         <S.Button onClick={handlePlayButtonClick}>Play</S.Button>

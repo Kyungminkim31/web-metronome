@@ -54,7 +54,7 @@ function Metronome() {
   const [currentBeat, setCurrentBeat] = useState(0);
 
   // BPM stands for Beat Per Minute
-  const [tempo,] = useState(initialTempo);
+  const [tempo, setTempo] = useState(initialTempo);
 
   const [audio] = useState(new Audio(clickUrl));
 
@@ -77,10 +77,29 @@ function Metronome() {
     setCurrentBeat(0);
   }
 
+  const handlePlusButtonClick = (se:SyntheticEvent) => {
+    se.preventDefault();
+    if (tempo + 4 > 200) return;
+    setTempo(tempo => tempo + 4);
+
+  }
+
+  const handleMinusButtonClick = (se:SyntheticEvent) => {
+    se.preventDefault();
+    if (tempo - 4 < 40) return;
+    setTempo(tempo => tempo - 4);
+  }
+
   return (
     <S.Container>
       <h3>Metronome</h3>
-      <p>Tempo: {initialTempo}</p>
+      <div>
+        Tempo: {tempo}
+        <S.ButtonBar>
+          <S.Button onClick={handlePlusButtonClick}>+</S.Button>
+          <S.Button onClick={handleMinusButtonClick}>-</S.Button>
+        </S.ButtonBar>
+      </div>
       <p>Time Signature:  {maxBeat}/{noteValue}</p>
       <S.ButtonBar>
         <S.Button onClick={handlePlayButtonClick}>Play</S.Button>

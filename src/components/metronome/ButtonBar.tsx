@@ -2,7 +2,7 @@ import React, {SyntheticEvent} from 'react';
 import styled from 'styled-components';
 import {WHITE} from '../../constants/color';
 
-interface ButtonBar{
+interface ButtonBarProps {
   intervalId:  NodeJS.Timer | undefined
   setIntervalId:  React.Dispatch<React.SetStateAction<NodeJS.Timer | undefined>>
 
@@ -44,7 +44,7 @@ function TempoBar({
                     setCurrentBeat,
                     tempo,
                     maxBeat
-}: ButtonBar) {
+}: ButtonBarProps) {
   const handlePlayButtonClick = (se: SyntheticEvent) => {
     se.preventDefault();
 

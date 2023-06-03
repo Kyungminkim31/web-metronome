@@ -2,7 +2,7 @@ import React, {SyntheticEvent} from 'react';
 import styled from 'styled-components';
 import {WHITE} from '../../constants/color';
 
-interface TempoBar {
+interface TempoBarProps {
   tempo: number;
   setTempo: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -30,7 +30,7 @@ const S = {
   `,
 };
 
-function TempoBar({ tempo, setTempo }: TempoBar) {
+function TempoBar({ tempo, setTempo }: TempoBarProps) {
   const handlePlusButtonClick = (se:SyntheticEvent) => {
     se.preventDefault();
     if (tempo + 4 > 200) return;

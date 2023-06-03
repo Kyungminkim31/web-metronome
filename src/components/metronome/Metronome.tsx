@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {NOTE_VALUE} from '../types/note-value';
-import clickUrl from '../../assets/sounds/metronome-click.mp3';
-import TempoBar from './TempoBar';
-import ButtonBar from './ButtonBar';
+import {NOTE_VALUE} from 'types/note-value';
+import clickUrl from 'assets/sounds/metronome-click.mp3';
+import TempoBar from 'components/metronome/TempoBar';
+import ButtonBar from 'components/metronome/ButtonBar';
 
 const S = {
   Container: styled.div`

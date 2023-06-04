@@ -1,6 +1,6 @@
-import React, {SyntheticEvent} from 'react';
+import React, {SyntheticEvent, useState} from 'react';
 import styled from 'styled-components';
-import {WHITE} from 'constants/color';
+import {BLACK, WHITE} from 'constants/color';
 
 interface ButtonBarProps {
   intervalId:  NodeJS.Timer | undefined
@@ -26,10 +26,10 @@ const S = {
     border: 1px ${WHITE} solid;
 
     :hover {
-      color: #282c34;
+      color: ${BLACK};
       background-color: #61dafb;
     }
-
+    
     border-radius: 0.25rem;
 
     cursor: pointer;
@@ -45,9 +45,12 @@ function TempoBar({
                     tempo,
                     maxBeat
 }: ButtonBarProps) {
+  const [isPlaying, setPlaying] = useState(false);
+
   const handlePlayButtonClick = (se: SyntheticEvent) => {
     se.preventDefault();
 
+    if (isPlaying) return;
     if (!intervalId) clearInterval(intervalId);
 
     const id = setInterval(async () => {
@@ -56,22 +59,23 @@ function TempoBar({
       setCurrentBeat(currentBeat => ((currentBeat % maxBeat) + 1));
     }, (60 / tempo) * 1000);
     setIntervalId(id);
+    setPlaying(true);
   };
 
   const handleStopButtonClick = (se: SyntheticEvent) => {
     se.preventDefault();
     clearInterval(intervalId);
     setCurrentBeat(0);
+
+    setPlaying(false);
   };
+
+  const PlayButton = () => <S.Button onClick={handlePlayButtonClick}>Play</S.Button>
+  const StopButton = () => <S.Button onClick={handleStopButtonClick}>Stop</S.Button>
 
   return (
     <S.Container>
-      <S.Button onClick={handlePlayButtonClick}>
-        Play
-      </S.Button>
-      <S.Button onClick={handleStopButtonClick}>
-        Stop
-      </S.Button>
+      { isPlaying ? StopButton() : PlayButton() }
     </S.Container>
   );
 }

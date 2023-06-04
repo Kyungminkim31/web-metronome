@@ -42,7 +42,7 @@ function Metronome() {
 
   return (
     <S.Container>
-      <h3>Metronome</h3>
+      <h3>Web Metronome⌛️</h3>
       <TempoBar tempo={tempo} setTempo={setTempo}/>
       <p>Time Signature: {maxBeat}/{noteValue}</p>
       <ButtonBar intervalId={intervalId}

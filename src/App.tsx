@@ -1,11 +1,13 @@
 import React from 'react';
-import './App.css';
-import Metronome from './components/metronome/Metronome';
+import 'App.css';
+import Metronome from 'components/metronome/Metronome';
 import styled from 'styled-components';
-import {CONTENT_CONTAINER_MAX_WIDTH} from './constants/layout-size';
+import {CONTENT_CONTAINER_MAX_WIDTH} from 'constants/layout-size';
+import {BLACK} from 'constants/color';
 
 const S = {
   PageContainer: styled.div`
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +19,17 @@ const S = {
     flex-direction: column;
     align-items: center;
     
-    background-color: #282c34;
+    background-color: ${BLACK};
+  `,
+  Footer: styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    background-color: red;
+    bottom: 0;
+    position: fixed;
   `,
 };
 
@@ -27,6 +39,9 @@ function App() {
       <S.ContentContainer>
         <Metronome/>
       </S.ContentContainer>
+      <S.Footer>
+        footer
+      </S.Footer>
     </S.PageContainer>
   );
 }

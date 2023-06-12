@@ -4,6 +4,7 @@ import Metronome from 'components/metronome/Metronome';
 import styled from 'styled-components';
 import {CONTENT_CONTAINER_MAX_WIDTH} from 'constants/layout-size';
 import {BLACK} from 'constants/color';
+import Footer from './components/footer/Footer';
 
 const S = {
   PageContainer: styled.div`
@@ -27,7 +28,8 @@ const S = {
     flex-direction: column;
     align-items: center;
     
-    background-color: red;
+    background-color: ${BLACK};
+    
     bottom: 0;
     position: fixed;
   `,
@@ -40,7 +42,7 @@ function App() {
         <Metronome/>
       </S.ContentContainer>
       <S.Footer>
-        footer
+        <Footer/>
       </S.Footer>
     </S.PageContainer>
   );

@@ -5,4 +5,5 @@ export const NOTE_VALUE = {
   EIGHTH_NOTE: 8,
 } as const;
 
+// eslint-disable-next-line
 type NOTE_VALUE = typeof NOTE_VALUE[keyof typeof NOTE_VALUE];

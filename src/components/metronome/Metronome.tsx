@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {NOTE_VALUE} from 'types/note-value';
+import { NoteValue, NoteValueObj } from 'types/note-value';
 import clickUrl from 'assets/sounds/metronome-click.mp3';
 import TempoBar from 'components/metronome/TempoBar';
 import ButtonBar from 'components/metronome/ButtonBar';
@@ -31,7 +31,7 @@ function Metronome() {
   const initialBeat = 4;
   const initialTempo = 100;
 
-  const noteValue = NOTE_VALUE.QUARTER_NOTE;
+  const noteValue: NoteValue = NoteValueObj.QUARTER_NOTE;
   const [maxBeat,] = useState(initialBeat);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
   const [currentBeat, setCurrentBeat] = useState(0);

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {CONTENT_CONTAINER_MAX_WIDTH} from 'constants/layout-size';
 import {BLACK} from 'constants/color';
 import Footer from './components/footer/Footer';
+import { Route, Routes } from 'react-router-dom';
 
 const S = {
   PageContainer: styled.div`
@@ -39,13 +40,24 @@ function App() {
   return (
     <S.PageContainer>
       <S.ContentContainer>
-        <Metronome/>
+        <Routes>
+          <Route path="/" element={<Metronome />} />
+          <Route path="/kmkim" element={<Test />} />
+        </Routes>
       </S.ContentContainer>
       <S.Footer>
         <Footer/>
       </S.Footer>
     </S.PageContainer>
   );
+}
+
+function Test() {
+      return (
+        <>
+          Test
+        </>
+      )
 }
 
 export default App;

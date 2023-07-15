@@ -4,8 +4,9 @@ import Metronome from 'components/metronome/Metronome';
 import styled from 'styled-components';
 import {CONTENT_CONTAINER_MAX_WIDTH} from 'constants/layout-size';
 import {BLACK} from 'constants/color';
-import Footer from './components/footer/Footer';
+import Footer from 'components/footer/Footer';
 import { Route, Routes } from 'react-router-dom';
+import Playground from './components/playground/Playground';
 
 const S = {
   PageContainer: styled.div`
@@ -42,7 +43,7 @@ function App() {
       <S.ContentContainer>
         <Routes>
           <Route path="/" element={<Metronome />} />
-          <Route path="/kmkim" element={<Test />} />
+          <Route path="/playground" element={<Playground />} />
         </Routes>
       </S.ContentContainer>
       <S.Footer>
@@ -50,14 +51,6 @@ function App() {
       </S.Footer>
     </S.PageContainer>
   );
-}
-
-function Test() {
-      return (
-        <>
-          Test
-        </>
-      )
 }
 
 export default App;

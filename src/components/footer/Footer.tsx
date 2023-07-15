@@ -16,7 +16,7 @@ const S = {
 };
 
 function Footer() {
-  const copyWrightMessage = '© 2023 Kyungmin Kim';
+  const copyWrightMessage = '© 2023 Major Seven';
   return (
     <S.Container>
       <S.CopyWrightMessage>

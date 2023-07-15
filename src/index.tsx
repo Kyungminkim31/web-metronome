@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from 'error-page';
+import ErrorPage from 'ErrorPage';
 import Playground from 'components/playground/Playground';
 
 const root = ReactDOM.createRoot(

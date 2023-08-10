@@ -1,15 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const S = {
-  Container: styled.div``,
+  Container: styled.div`
+    background-color: white;
+  `,
 };
 
-interface Props {
-
-}
-
-const MyCanvas = (props: Props) => {
+const MyCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
@@ -17,7 +15,7 @@ const MyCanvas = (props: Props) => {
     if (!canvasRef.current) return;
     ctxRef.current = canvasRef.current?.getContext('2d');
 
-    if(!ctxRef.current) return
+    if (!ctxRef.current) return
     ctxRef.current.fillStyle = "rgb(200, 0, 0)";
     ctxRef.current?.fillRect(10, 10, 50, 50);
 

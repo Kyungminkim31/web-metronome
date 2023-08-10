@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MyCanvas from './MyCanvas';
 
 const S = {
   Container: styled.div`
@@ -10,7 +11,7 @@ const S = {
 function Playground () {
   return (
     <S.Container>
-      Test
+      <MyCanvas />
     </S.Container>
 );
 }

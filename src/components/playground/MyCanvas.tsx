@@ -16,12 +16,10 @@ const MyCanvas = () => {
     ctxRef.current = canvasRef.current?.getContext('2d');
 
     if (!ctxRef.current) return
-    ctxRef.current.fillStyle = "rgb(200, 0, 0)";
-    ctxRef.current?.fillRect(10, 10, 50, 50);
 
-
-    ctxRef.current.fillStyle = "rgb(20, 200, 123)";
-    ctxRef.current?.fillRect(30, 30, 50, 50);
+    ctxRef.current?.fillRect(25,25,100,100);
+    ctxRef.current?.clearRect(45,45,60,60);
+    ctxRef.current?.strokeRect(50,50,50,50);
 
   }, []);
 

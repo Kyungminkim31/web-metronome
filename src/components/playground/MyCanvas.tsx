@@ -18,10 +18,14 @@ const MyCanvas = () => {
     if (!ctxRef.current) return
 
     ctxRef.current?.beginPath();
-    ctxRef.current.moveTo(75, 50);
-    ctxRef.current.lineTo(100, 75);
-    ctxRef.current.lineTo(100, 25);
-    ctxRef.current.fill();
+    ctxRef.current?.arc(75, 75, 50, 0, Math.PI * 2, true);
+    ctxRef.current?.moveTo(110, 75);
+    ctxRef.current?.arc(75, 75, 35, 0, Math.PI, false);
+    ctxRef.current?.moveTo(65, 65);
+    ctxRef.current?.arc(60, 65, 5, 0, Math.PI * 2, true);
+    ctxRef.current?.moveTo(95, 65);
+    ctxRef.current?.arc(90, 65, 5, 0, Math.PI * 2, true);
+    ctxRef.current.stroke();
 
   }, []);
 

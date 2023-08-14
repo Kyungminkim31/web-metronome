@@ -17,9 +17,11 @@ const MyCanvas = () => {
 
     if (!ctxRef.current) return
 
-    ctxRef.current?.fillRect(25,25,100,100);
-    ctxRef.current?.clearRect(45,45,60,60);
-    ctxRef.current?.strokeRect(50,50,50,50);
+    ctxRef.current?.beginPath();
+    ctxRef.current.moveTo(75, 50);
+    ctxRef.current.lineTo(100, 75);
+    ctxRef.current.lineTo(100, 25);
+    ctxRef.current.fill();
 
   }, []);
 

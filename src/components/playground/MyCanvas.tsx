@@ -17,24 +17,21 @@ const MyCanvas = () => {
 
     if (!ctxRef.current) return
 
-    ctxRef.current.fillStyle = '#FD0';
-    ctxRef.current.fillRect(0, 0, 75, 75);
-    ctxRef.current.fillStyle = '#6C0';
-    ctxRef.current.fillRect(75, 0, 75, 75);
-    ctxRef.current.fillStyle = '#09F';
-    ctxRef.current.fillRect(0, 75, 75, 75);
-    ctxRef.current.fillStyle = '#F30';
-    ctxRef.current.fillRect(75, 75, 75, 75);
-    ctxRef.current.fillStyle = '#FFF';
+    ctxRef.current.fillStyle = 'rgb(255, 221, 0)';
+    ctxRef.current?.fillRect(0, 0, 150, 37.5);
+    ctxRef.current.fillStyle = 'rgb(102, 204, 0)';
+    ctxRef.current?.fillRect(0, 37.5, 150, 37.5);
+    ctxRef.current.fillStyle = 'rgb(0, 153, 255)';
+    ctxRef.current?.fillRect(0, 75, 150, 37.5);
+    ctxRef.current.fillStyle = 'rgb(255, 51, 0)';
+    ctxRef.current?.fillRect(0, 112.5, 150, 37.5);
 
-    ctxRef.current.globalAlpha = 0.2;
-
-    for (let i = 0; i < 7; i++) {
-      ctxRef.current.beginPath();
-      ctxRef.current.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
-      ctxRef.current?.fill();
+    for (let i = 0; i < 10; i ++) {
+      ctxRef.current.fillStyle = `rgb(255, 255, 255, ${(i + 1) /10}`;
+      for (let j = 0; j < 4; j ++) {
+        ctxRef.current?.fillRect(5 + i * 14, 5 + j * 37.5, 14, 27.5);
+      }
     }
-
   }, []);
 
   return (

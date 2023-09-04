@@ -17,13 +17,22 @@ const MyCanvas = () => {
 
     if (!ctxRef.current) return
 
-    for (let i = 0; i < 6; i++) {
-      for (let j = 0; j < 6; j++) {
-        ctxRef.current.strokeStyle = `rgb(0, ${Math.floor(255 - 42.5 * i)}, ${Math.floor(255 - 42.5 * j)})`;
-        ctxRef.current?.beginPath();
-        ctxRef.current.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, 2 * Math.PI, true);
-        ctxRef.current?.stroke();
-      }
+    ctxRef.current.fillStyle = '#FD0';
+    ctxRef.current.fillRect(0, 0, 75, 75);
+    ctxRef.current.fillStyle = '#6C0';
+    ctxRef.current.fillRect(75, 0, 75, 75);
+    ctxRef.current.fillStyle = '#09F';
+    ctxRef.current.fillRect(0, 75, 75, 75);
+    ctxRef.current.fillStyle = '#F30';
+    ctxRef.current.fillRect(75, 75, 75, 75);
+    ctxRef.current.fillStyle = '#FFF';
+
+    ctxRef.current.globalAlpha = 0.2;
+
+    for (let i = 0; i < 7; i++) {
+      ctxRef.current.beginPath();
+      ctxRef.current.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
+      ctxRef.current?.fill();
     }
 
   }, []);

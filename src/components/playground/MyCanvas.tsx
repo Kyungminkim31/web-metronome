@@ -19,8 +19,10 @@ const MyCanvas = () => {
 
     for (let i = 0; i < 6; i++) {
       for (let j = 0; j < 6; j++) {
-        ctxRef.current.fillStyle = `rgb(${Math.floor(255 - 42.5 * i)}, ${Math.floor(255 - 42.5 * j,)}, 0)`;
-        ctxRef.current?.fillRect(j * 25, i * 25, 25, 25);
+        ctxRef.current.strokeStyle = `rgb(0, ${Math.floor(255 - 42.5 * i)}, ${Math.floor(255 - 42.5 * j)})`;
+        ctxRef.current?.beginPath();
+        ctxRef.current.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, 2 * Math.PI, true);
+        ctxRef.current?.stroke();
       }
     }
 

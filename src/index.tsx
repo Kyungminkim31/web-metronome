@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from 'ErrorPage';
 import Playground from 'components/playground/Playground';
+import WireframeApp from './components/playground/WireframeApp';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,7 +20,11 @@ const router = createBrowserRouter([
       {
         path: "playground",
         element: <Playground />,
-      }
+      },
+      {
+        path: 'wireframe',
+        element: <WireframeApp />,
+      },
     ]
 
   },

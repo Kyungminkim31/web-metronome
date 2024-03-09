@@ -7,6 +7,7 @@ import {BLACK} from 'constants/color';
 import Footer from 'components/footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Playground from './components/playground/Playground';
+import WireframeApp from './components/playground/WireframeApp';
 
 const S = {
   PageContainer: styled.div`
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Metronome />} />
           <Route path="/playground" element={<Playground />} />
+          <Route path="/wireframe" element={<WireframeApp/>} />
         </Routes>
       </S.ContentContainer>
       <S.Footer>

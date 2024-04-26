@@ -2,7 +2,6 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import clickUrl from 'assets/sounds/metronome-click.mp3';
 import { Simulate } from 'react-dom/test-utils';
-import play = Simulate.play;
 
 const S = {
   Container: styled.div`
@@ -12,7 +11,7 @@ const S = {
 };
 
 
-
+// https://github.com/mdn/webaudio-examples/blob/main/step-sequencer/index.html#L426
 function Playground () {
   const audioCtx = new AudioContext();
   const [clickSample, setClickSample] = useState<AudioBuffer>();
@@ -33,7 +32,9 @@ function Playground () {
 
   }, []);
 
-  const playSample = () => {
+  const playSample = (se: SyntheticEvent) => {
+    se.preventDefault();
+
     const playbackRate = 1;
     const sampleSource = new AudioBufferSourceNode(audioCtx, {
       buffer: clickSample,

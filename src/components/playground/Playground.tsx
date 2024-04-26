@@ -1,5 +1,8 @@
-import React, { SyntheticEvent, useRef } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import clickUrl from 'assets/sounds/metronome-click.mp3';
+import { Simulate } from 'react-dom/test-utils';
+import play = Simulate.play;
 
 const S = {
   Container: styled.div`
@@ -8,51 +11,43 @@ const S = {
   `,
 };
 
-const INITIAL_VOL = 0.001;
-const maxFreq = 6000;
-const maxVol = 0.02;
-const initialVol = 0.001;
+
 
 function Playground () {
-  const AudioContext = window.AudioContext;
   const audioCtx = new AudioContext();
+  const [clickSample, setClickSample] = useState<AudioBuffer>();
+  useEffect(() => {
+    const setupSample = async (audioCtx: AudioContext) => {
+      return await getFile(audioCtx, clickUrl);
+    };
 
-  const oscillator = audioCtx.createOscillator();
-  const gainNode = audioCtx.createGain();
+    const getFile = async (audioContext :AudioContext, filePath: URL) => {
+      const response = await fetch(filePath);
+      const arrayBuffer = await response.arrayBuffer();
+      return await audioContext.decodeAudioData(arrayBuffer);
+    };
 
-  oscillator.connect(gainNode);
+    setupSample(audioCtx).then((sample) => {
+      setClickSample(sample);
+    }).catch(error => console.error(error));
 
-  oscillator.detune.value = 100;
+  }, []);
 
-  oscillator.start();
-
-  oscillator.onended = () => {
-    console.log("Your tone has now stopped playing!");
+  const playSample = () => {
+    const playbackRate = 1;
+    const sampleSource = new AudioBufferSourceNode(audioCtx, {
+      buffer: clickSample,
+      playbackRate: playbackRate,
+    });
+    sampleSource.connect(audioCtx.destination);
+    sampleSource.start(0);
+    return sampleSource;
   };
-
-  gainNode.gain.value = initialVol;
-
-  const handleOnClickPlay = (se: SyntheticEvent) => {
-    se.preventDefault();
-    gainNode.connect(audioCtx.destination);
-  }
-
-  const handleOnClickStop = (se: SyntheticEvent) => {
-    se.preventDefault();
-    console.log('the stop button clicked');
-    gainNode.disconnect(audioCtx.destination);
-  }
 
   return (
     <S.Container>
-      <div>
-        width: {window.innerWidth}px
-      </div>
-      <div>
-        height: {window.innerHeight}px
-      </div>
-      <button onClick={handleOnClickPlay}>play</button>
-      <button onClick={handleOnClickStop}>stop</button>
+      {clickSample ? "a sample is loaded" : "unloaded" }
+      <button onClick={playSample}>play</button>
     </S.Container>
 );
 }

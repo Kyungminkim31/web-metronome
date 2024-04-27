@@ -16,6 +16,8 @@ function Playground () {
 
   const audioCtx = new AudioContext();
   const [clickSample, setClickSample] = useState<AudioBuffer>();
+  const [isPlaying, setPlaying] = useState(false);
+  const [currentNote, setCurrentNote] = useState(0);
 
   useEffect(() => {
     console.log("rendered");
@@ -40,7 +42,6 @@ function Playground () {
   const lookahead = 25.0;
   const schedulerAheadTime = 0.1
 
-  let currentNote = 0;
   let nextNoteTime = 0;
   const nextNote = () => {
     const secondsPerBeat = 60.0 / tempo;
@@ -48,7 +49,7 @@ function Playground () {
     nextNoteTime += secondsPerBeat; // Add beat length to last beat time
 
     // Advance the beat number, wrap to zero when reaching 4
-    currentNote = (currentNote + 1) % 4;
+    setCurrentNote((currentNote + 1) % 4);
   };
 
   const scheduleNote = (time: number) => {
@@ -62,11 +63,11 @@ function Playground () {
       playbackRate: playbackRate,
     });
     sampleSource.connect(audioCtx.destination);
-    sampleSource.start(0);
+    sampleSource.start(time);
     return sampleSource;
   }
 
-  let timerID;
+  let timerID:any;
   const scheduler = () => {
     while(nextNoteTime < audioCtx.currentTime + schedulerAheadTime) {
       scheduleNote(nextNoteTime);
@@ -78,7 +79,7 @@ function Playground () {
   const play = (se: SyntheticEvent) => {
     se.preventDefault();
 
-    if(audioCtx.state === "suspended") {
+    if (audioCtx.state === "suspended") {
       audioCtx.resume().then(() => console.log('audio ctx resumed'));
     }
 
@@ -86,12 +87,18 @@ function Playground () {
     scheduler();
   };
 
+  const stop = (se: SyntheticEvent) => {
+    clearTimeout(timerID);
+  }
+
   return (
     <S.Container>
       <div>
         {clickSample ? "a sample is loaded" : "unloaded" }
       </div>
+      {currentNote}
       <button onClick={play}>play</button>
+      <button onClick={stop}>stop</button>
     </S.Container>
 );
 }

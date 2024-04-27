@@ -93,6 +93,7 @@ function Playground () {
 
   return (
     <S.Container>
+      {clickSample ? 'loaded' : 'unloaded'}
       <div>
         {clickSample ? "a sample is loaded" : "unloaded" }
       </div>
